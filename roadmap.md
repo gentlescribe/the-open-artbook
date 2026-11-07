@@ -1,2 +1,6 @@
 - [x] Add The Starrstream introduction and interactive globe before Find Me.
 - [x] Add the Starrstream information page and verify navigation on desktop and mobile.
+- [ ] Fix the dark mass below the Artbook.
+- [ ] Replace the globe with an interactive Milky Way-like galaxy.
+- [ ] Add a retractable contents folder linking Portfolio and The Starrstream.
+- [ ] Update the shared Starrstream bio and verify the changes.
