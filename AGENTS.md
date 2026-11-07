@@ -32,3 +32,4 @@ use the editor.
 - Keep the Starrstream 3D scene in a lazily loaded client-only module, mounted near the viewport; this preserves portfolio SSR and avoids idle WebGL work.
 - Share Starrstream introduction text through a browser-safe data module so the section and information page stay consistent.
 - Mount the retractable Contents folder in the root shell and use router Links so both content pages share accessible navigation.
+- Resolve Lovable media pointers through src/lib/asset-url.ts before rendering; external hosts do not serve the relative /__l5e asset endpoint.
