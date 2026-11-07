@@ -4,3 +4,5 @@
 - [x] Replace the globe with an interactive Milky Way-like galaxy.
 - [x] Add a retractable contents folder linking Portfolio and The Starrstream.
 - [x] Update the shared Starrstream bio and verify the changes.
+- [ ] Fix artwork and video URLs for external hosting and verify media loading.
+- [ ] Send the fix to GitHub (requires an available GitHub connection or project Git sync).
