@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { ARTWORKS, CONTACT_EMAIL, type Artwork } from "./content";
 
 const FLIP_MS = 1000;
 
-function ArtPage({ art, side, pageNo }: { art: Artwork; side: "front" | "back"; pageNo: number }) {
+function ArtPage({ art, side, pageNo, onView }: { art: Artwork; side: "front" | "back"; pageNo: number; onView: (a: Artwork) => void }) {
   return (
     <div
       className={`parchment relative flex h-full w-full flex-col px-[9%] pb-[7%] pt-[8%] ${
@@ -15,16 +16,23 @@ function ArtPage({ art, side, pageNo }: { art: Artwork; side: "front" | "back"; 
         Plate {art.plate}
       </p>
       <figure className="mt-[6%] flex min-h-0 flex-1 flex-col">
-        <div className="min-h-0 flex-1 overflow-hidden rounded-[2px] bg-parchment-deep p-[4%] shadow-[inset_0_0_0_1px_color-mix(in_oklab,var(--ink)_15%,transparent)]">
+        <button
+          type="button"
+          aria-label={`View ${art.title} up close`}
+          onClick={(e) => {
+            e.stopPropagation();
+            onView(art);
+          }}
+          className="group min-h-0 flex-1 cursor-zoom-in overflow-hidden rounded-[2px] bg-parchment-deep p-[4%] shadow-[inset_0_0_0_1px_color-mix(in_oklab,var(--ink)_15%,transparent)]">
           <img
             src={art.src}
             alt={art.title}
             width={1920}
             height={1920}
             loading="lazy"
-            className="h-full w-full object-contain"
+            className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.03]"
           />
-        </div>
+        </button>
         <figcaption className="mt-[6%] text-center">
           <span className="block font-display text-[clamp(0.7rem,1.1vw,0.95rem)] italic text-ink">
             {art.title}
@@ -113,22 +121,23 @@ function Colophon() {
 
 type Leaf = { front: ReactNode; back: ReactNode };
 
-function buildLeaves(): Leaf[] {
+function buildLeaves(onView: (a: Artwork) => void): Leaf[] {
   const artLeaves: Leaf[] = [];
   for (let i = 0; i < ARTWORKS.length; i += 2) {
     const front = ARTWORKS[i]!;
     const back = ARTWORKS[i + 1];
     artLeaves.push({
-      front: <ArtPage art={front} side="front" pageNo={i + 3} />,
-      back: back ? <ArtPage art={back} side="back" pageNo={i + 4} /> : <div className="parchment spine-shade-right h-full w-full" />,
+      front: <ArtPage art={front} side="front" pageNo={i + 3} onView={onView} />,
+      back: back ? <ArtPage art={back} side="back" pageNo={i + 4} onView={onView} /> : <div className="parchment spine-shade-right h-full w-full" />,
     });
   }
   return [{ front: <Cover />, back: <ExLibris /> }, ...artLeaves, { front: <Colophon />, back: <BackCover /> }];
 }
 
-const LEAVES: Leaf[] = buildLeaves();
 
 export function ArtBook() {
+  const [viewing, setViewing] = useState<Artwork | null>(null);
+  const LEAVES = useMemo(() => buildLeaves(setViewing), []);
   const [current, setCurrent] = useState(0); // number of flipped leaves
   const [flipping, setFlipping] = useState<number | null>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -212,6 +221,21 @@ export function ArtBook() {
           Next <ChevronRight className="h-4 w-4" strokeWidth={1.5} />
         </button>
       </div>
+      <p className="font-serif text-xs italic text-muted-foreground">Tap any painting to see it up close</p>
+
+      <Dialog open={!!viewing} onOpenChange={(o) => !o && setViewing(null)}>
+        <DialogContent className="max-h-[95dvh] w-[95vw] max-w-5xl border-gold/30 bg-card p-4 sm:p-6">
+          {viewing && (
+            <>
+              <img src={viewing.src} alt={viewing.title} className="max-h-[78dvh] w-full rounded-sm object-contain" />
+              <div className="text-center">
+                <DialogTitle className="font-display text-2xl italic text-gold">{viewing.title}</DialogTitle>
+                <DialogDescription className="font-serif text-sm">Plate {viewing.plate} · {viewing.medium}</DialogDescription>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
