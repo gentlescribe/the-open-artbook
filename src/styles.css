@@ -73,9 +73,9 @@
   --kraft: oklch(0.7 0.075 72);
   --kraft-deep: oklch(0.6 0.075 66);
   --kraft-light: oklch(0.77 0.07 76);
-  --globe-ocean: oklch(0.46 0.065 195);
-  --globe-land: oklch(0.76 0.09 88);
-  --globe-highland: oklch(0.85 0.045 95);
+  --galaxy-core: oklch(0.9 0.065 85);
+  --galaxy-arm: oklch(0.76 0.08 220);
+  --galaxy-star: oklch(1 0 0);
 
   --background: var(--cosmos);
   --foreground: oklch(0.98 0.005 300);
@@ -291,8 +291,8 @@
     opacity 0.45s ease;
 }
 
-.starrstream-globe {
-  height: min(76vw, 44rem);
+.starrstream-galaxy {
+  height: min(85vw, 44rem);
   min-height: 17rem;
   touch-action: pan-y;
 }

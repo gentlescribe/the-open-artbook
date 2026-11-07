@@ -29,5 +29,6 @@ use the editor.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
 
-- Keep the Starrstream globe in a lazily loaded client-only module, mounted near the viewport; this preserves portfolio SSR and avoids idle WebGL work.
+- Keep the Starrstream 3D scene in a lazily loaded client-only module, mounted near the viewport; this preserves portfolio SSR and avoids idle WebGL work.
 - Share Starrstream introduction text through a browser-safe data module so the section and information page stay consistent.
+- Mount the retractable Contents folder in the root shell and use router Links so both content pages share accessible navigation.

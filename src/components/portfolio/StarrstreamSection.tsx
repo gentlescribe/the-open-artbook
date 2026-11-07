@@ -1,11 +1,11 @@
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight, Globe2 } from "lucide-react";
+import { ArrowUpRight, Orbit } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { STARRSTREAM_BIO } from "./starrstream";
 
-const Globe = lazy(() => import("./StarrstreamGlobe"));
+const Galaxy = lazy(() => import("./StarrstreamGalaxy"));
 
 export function StarrstreamSection() {
   const [visible, setVisible] = useState(false);
@@ -29,8 +29,8 @@ export function StarrstreamSection() {
         </div>
       </header>
       <p className="mt-8 max-w-2xl font-serif text-xl leading-relaxed text-foreground/75 md:text-2xl">{STARRSTREAM_BIO}</p>
-      <div ref={host} data-scene-ready={ready || undefined} className="starrstream-globe relative mt-16 w-full max-w-5xl cursor-grab active:cursor-grabbing" role="button" tabIndex={0} aria-label="Explore The Starrstream globe" onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); setOpen(true); } }}>
-        {visible && <Suspense fallback={<div className="flex h-full items-center justify-center text-gold"><Globe2 className="h-10 w-10 animate-pulse" /></div>}><Globe onSelect={() => setOpen(true)} onReady={() => setReady(true)} /></Suspense>}
+      <div ref={host} data-scene-ready={visible && ready || undefined} className="starrstream-galaxy relative mt-12 w-full max-w-5xl cursor-grab active:cursor-grabbing" role="button" tabIndex={0} aria-label="Explore The Starrstream galaxy" onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); setOpen(true); } }}>
+        {visible && <Suspense fallback={<div className="flex h-full items-center justify-center text-gold"><Orbit className="h-10 w-10 animate-pulse" /></div>}><Galaxy onSelect={() => setOpen(true)} onReady={() => setReady(true)} /></Suspense>}
       </div>
       <Button variant="link" onClick={() => setOpen(true)} className="mt-4 font-serif text-lg">The Starrstream <ArrowUpRight /></Button>
       <Dialog open={open} onOpenChange={setOpen}>
