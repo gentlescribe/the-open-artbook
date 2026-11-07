@@ -102,7 +102,7 @@
   --ease-page: cubic-bezier(0.645, 0.045, 0.355, 1);
 
   /* Workbench sizing — every object scales with the viewport so both sections stay exactly 100vh */
-  --page-h: min(55dvh, 62vw);
+  --page-h: min(70dvh, 80vw);
   --page-w: calc(var(--page-h) * 0.74);
   --spine-h: min(34dvh, 15rem);
   --spine-w: min(14vw, 3.6rem);
@@ -113,7 +113,7 @@
 
 @media (min-width: 1024px) {
   :root {
-    --page-h: min(78dvh, 42vw, 46rem);
+    --page-h: min(90dvh, 54vw, 58rem);
     --spine-h: min(42dvh, 20rem);
     --spine-w: 4.5rem;
     --open-h: min(72dvh, 36rem);
