@@ -1,0 +1,1 @@
+export const STARRSTREAM_BIO = "The Starrstream is a creative universe created by Starrspawn, home to many of his fictional works that explore psychedelic, eldritch and cosmic horror, merged with aspects of African culture or African-esque influences.";
