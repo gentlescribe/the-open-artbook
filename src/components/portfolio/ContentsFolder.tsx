@@ -15,7 +15,7 @@ export function ContentsFolder() {
             <FolderIcon /> Contents
           </Button>
         </PopoverTrigger>
-        <PopoverContent align="end" sideOffset={10} className="kraft w-64 border-kraft-deep p-5 text-ink">
+        <PopoverContent align="end" sideOffset={10} className="kraft w-64 border-kraft-deep bg-kraft! p-5 text-ink!">
           <p className="mb-3 border-b border-ink/20 pb-2 font-type text-sm">Contents</p>
           <nav aria-label="Page contents" className="flex flex-col gap-1">
             <Button asChild variant="ghost" className="justify-between font-serif text-lg hover:bg-ink/10 hover:text-ink">
