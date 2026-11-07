@@ -28,3 +28,6 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+- Keep the Starrstream globe in a lazily loaded client-only module, mounted near the viewport; this preserves portfolio SSR and avoids idle WebGL work.
+- Share Starrstream introduction text through a browser-safe data module so the section and information page stay consistent.

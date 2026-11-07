@@ -5,6 +5,7 @@ import { BioSection } from "@/components/portfolio/BioSection";
 import { ArtBook } from "@/components/portfolio/ArtBook";
 import { Bookshelf } from "@/components/portfolio/Bookshelf";
 import { ContactLinks, LetterForm } from "@/components/portfolio/ContactSection";
+import { StarrstreamSection } from "@/components/portfolio/StarrstreamSection";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -52,7 +53,8 @@ function Index() {
         <Section id="shelf" num="III" title="The Bookshelf">
           <Bookshelf />
         </Section>
-        <Section id="contact" num="IV" title="Find Me">
+        <StarrstreamSection />
+        <Section id="contact" num="V" title="Find Me">
           <ContactLinks />
           <div className="mt-10 w-full">
             <h3 className="mb-6 text-center font-display text-2xl italic text-foreground/90 lg:text-3xl">Or write me a letter</h3>

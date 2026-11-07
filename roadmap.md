@@ -1,0 +1,2 @@
+- [ ] Add The Starrstream introduction and interactive globe before Find Me.
+- [ ] Add the Starrstream information page and verify navigation on desktop and mobile.
