@@ -1,3 +1,4 @@
+import { assetUrl } from "@/lib/asset-url";
 import waves from "@/assets/waves.png.asset.json";
 import wavesConcept from "@/assets/waves-concept.png.asset.json";
 import postCreateClarity from "@/assets/post-create-clarity.png.asset.json";
@@ -25,21 +26,21 @@ export type Artwork = {
 
 // Plates are laid out two per leaf (front + back) in the art book, in this order.
 export const ARTWORKS: Artwork[] = [
-  { plate: "I", title: "Waves", medium: "Digital painting", src: waves.url },
-  { plate: "II", title: "Waves (concept)", medium: "Digital painting", src: wavesConcept.url },
-  { plate: "III", title: "Post Create Clarity", medium: "Digital painting", src: postCreateClarity.url },
-  { plate: "IV", title: "Blues", medium: "Digital painting", src: blues.url },
-  { plate: "V", title: "Starrgirl", medium: "Digital painting", src: starrgirl.url },
-  { plate: "VI", title: "Riot", medium: "Digital painting", src: riot.url },
-  { plate: "VII", title: "Aguitt the All-Seeing — Concept Art 1", medium: "Concept art", src: aguitt1.url },
-  { plate: "VIII", title: "Aguitt the All-Seeing — Concept Art 2", medium: "Concept art", src: aguitt2.url },
-  { plate: "IX", title: "Dimitri — Concept Art", medium: "Concept art", src: dimitri.url },
-  { plate: "X", title: "Ezryn — Concept Art 1", medium: "Concept art", src: ezryn1.url },
-  { plate: "XI", title: "Ezryn — Concept Art 2", medium: "Concept art", src: ezryn2.url },
-  { plate: "XII", title: "Hasgur — Concept Art", medium: "Concept art", src: hasgur.url },
-  { plate: "XIII", title: "Tenteyecle", medium: "Digital painting", src: tenteyecle.url },
-  { plate: "XIV", title: "Sapphire", medium: "Digital painting", src: abhorrent.url },
-  { plate: "XV", title: "Abhorrent", medium: "Digital painting", src: sapphire.url },
+  { plate: "I", title: "Waves", medium: "Digital painting", src: assetUrl(waves) },
+  { plate: "II", title: "Waves (concept)", medium: "Digital painting", src: assetUrl(wavesConcept) },
+  { plate: "III", title: "Post Create Clarity", medium: "Digital painting", src: assetUrl(postCreateClarity) },
+  { plate: "IV", title: "Blues", medium: "Digital painting", src: assetUrl(blues) },
+  { plate: "V", title: "Starrgirl", medium: "Digital painting", src: assetUrl(starrgirl) },
+  { plate: "VI", title: "Riot", medium: "Digital painting", src: assetUrl(riot) },
+  { plate: "VII", title: "Aguitt the All-Seeing — Concept Art 1", medium: "Concept art", src: assetUrl(aguitt1) },
+  { plate: "VIII", title: "Aguitt the All-Seeing — Concept Art 2", medium: "Concept art", src: assetUrl(aguitt2) },
+  { plate: "IX", title: "Dimitri — Concept Art", medium: "Concept art", src: assetUrl(dimitri) },
+  { plate: "X", title: "Ezryn — Concept Art 1", medium: "Concept art", src: assetUrl(ezryn1) },
+  { plate: "XI", title: "Ezryn — Concept Art 2", medium: "Concept art", src: assetUrl(ezryn2) },
+  { plate: "XII", title: "Hasgur — Concept Art", medium: "Concept art", src: assetUrl(hasgur) },
+  { plate: "XIII", title: "Tenteyecle", medium: "Digital painting", src: assetUrl(tenteyecle) },
+  { plate: "XIV", title: "Sapphire", medium: "Digital painting", src: assetUrl(abhorrent) },
+  { plate: "XV", title: "Abhorrent", medium: "Digital painting", src: assetUrl(sapphire) },
 ];
 
 export type WritingTab = "notes" | "essays" | "lore";

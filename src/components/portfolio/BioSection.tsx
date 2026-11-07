@@ -1,5 +1,6 @@
 import { ChevronDown } from "lucide-react";
 import bioVideo from "@/assets/videos/bio-background.mp4.asset.json";
+import { assetUrl } from "@/lib/asset-url";
 
 export function BioSection({ onNext }: { onNext: () => void }) {
   return (
@@ -8,7 +9,7 @@ export function BioSection({ onNext }: { onNext: () => void }) {
       className="relative flex min-h-dvh flex-col items-center justify-center overflow-hidden px-6 pb-24 pt-8 text-center md:py-16"
     >
       <video
-        src={bioVideo.url}
+        src={assetUrl(bioVideo)}
         autoPlay
         muted
         loop
