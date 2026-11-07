@@ -2,9 +2,8 @@ import { useState, type FormEvent } from "react";
 import { Instagram, Mail, Send } from "lucide-react";
 import { CONTACT_EMAIL } from "./content";
 
-// Replace with the real profile links.
-const INSTAGRAM_URL = "https://instagram.com/";
-const TIKTOK_URL = "https://tiktok.com/";
+const INSTAGRAM_URL = "https://www.instagram.com/starr.spawn";
+const TIKTOK_URL = "https://www.tiktok.com/@starrspawn";
 
 function TikTokIcon({ className }: { className?: string }) {
   return (
