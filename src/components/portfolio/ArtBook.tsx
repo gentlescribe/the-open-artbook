@@ -82,11 +82,14 @@ function BackCover() {
 
 function ExLibris() {
   return (
-    <div className="parchment spine-shade-right relative flex h-full w-full flex-col items-center justify-center p-[12%] text-center">
+    <div className="parchment spine-shade-right relative flex h-full w-full flex-col items-center px-[12%] pb-[8%] pt-[10%] text-center">
       <p className="font-serif text-[0.6rem] uppercase tracking-[0.45em] text-ink-faded">Ex Libris</p>
       <p className="mt-3 font-display text-[clamp(1rem,1.8vw,1.5rem)] italic text-ink">Starrspawn</p>
-      <span className="my-4 text-xs text-ink-faded">✦</span>
-      <ol className="space-y-1 font-serif text-[clamp(0.65rem,0.95vw,0.85rem)] text-ink">
+      <span className="my-3 text-xs text-ink-faded">✦</span>
+      <ol
+        className="hide-scrollbar min-h-0 flex-1 space-y-1 overflow-y-auto overscroll-contain font-serif text-[clamp(0.65rem,0.95vw,0.85rem)] text-ink"
+        onClick={(e) => e.stopPropagation()}
+      >
         {ARTWORKS.map((a) => (
           <li key={a.plate} className="flex gap-3">
             <span className="text-ink-faded">{a.plate}.</span>
