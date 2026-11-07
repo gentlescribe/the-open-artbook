@@ -15,7 +15,7 @@ export function StarrstreamSection() {
   useEffect(() => {
     const node = host.current;
     if (!node) return;
-    const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { rootMargin: "200px" });
+    const observer = new IntersectionObserver(([entry]) => setVisible(entry?.isIntersecting ?? false), { rootMargin: "200px" });
     observer.observe(node);
     return () => observer.disconnect();
   }, []);

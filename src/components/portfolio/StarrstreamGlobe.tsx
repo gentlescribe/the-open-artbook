@@ -7,7 +7,7 @@ function makeAtlas() {
   const canvas = document.createElement("canvas");
   canvas.width = 1024;
   canvas.height = 512;
-  const ctx = canvas.getContext("2d");
+  const ctx = canvas.getContext("2d", { willReadFrequently: true });
   if (!ctx) return new CanvasTexture(canvas);
   const styles = getComputedStyle(document.documentElement);
   const palette = ["--globe-ocean", "--globe-land", "--globe-highland"].map((token) => {
@@ -15,10 +15,10 @@ function makeAtlas() {
     ctx.fillRect(0, 0, 1, 1);
     return Array.from(ctx.getImageData(0, 0, 1, 1).data).slice(0, 3);
   });
-  const islands = Array.from({ length: 24 }, (_, i) => {
-    const lat = Math.asin(1 - 2 * (i + 0.5) / 24);
+  const islands = Array.from({ length: 14 }, (_, i): [number, number, number, number] => {
+    const lat = Math.asin(1 - 2 * (i + 0.5) / 14);
     const lon = i * 2.39996;
-    return [Math.cos(lat) * Math.cos(lon), Math.sin(lat), Math.cos(lat) * Math.sin(lon), 0.08 + ((i * 7) % 11) * 0.02];
+    return [Math.cos(lat) * Math.cos(lon), Math.sin(lat), Math.cos(lat) * Math.sin(lon), 0.025 + ((i * 7) % 11) * 0.009];
   });
   const pixels = ctx.createImageData(canvas.width, canvas.height);
   for (let y = 0; y < canvas.height; y++) {
@@ -26,15 +26,17 @@ function makeAtlas() {
     for (let x = 0; x < canvas.width; x++) {
       const lon = x / canvas.width * Math.PI * 2;
       const sx = Math.cos(lat) * Math.cos(lon), sy = Math.sin(lat), sz = Math.cos(lat) * Math.sin(lon);
-      const ripple = Math.sin(sx * 23 + sy * 13) * Math.cos(sz * 19 - sx * 7) * 0.025;
+      const ripple = Math.sin(sx * 23 + sy * 13) * Math.cos(sz * 19 - sx * 7) * 0.015;
       let height = -1;
       for (const island of islands) {
         height = Math.max(height, island[0] * sx + island[1] * sy + island[2] * sz - 1 + island[3] + ripple);
       }
-      const color = palette[height > 0.075 ? 2 : height > 0 ? 1 : 0];
-      const grain = 0.9 + 0.08 * Math.sin(x * 1.7 + y * 3.1) + 0.04 * Math.sin(sx * 90 + sz * 80);
+      const color = palette[height > 0.055 ? 2 : height > 0 ? 1 : 0];
+      if (!color) continue;
+      const noise = Math.sin(x * 127.1 + y * 311.7) * 43758.5453;
+      const grain = 0.92 + 0.06 * (noise - Math.floor(noise));
       const p = (y * canvas.width + x) * 4;
-      for (let c = 0; c < 3; c++) pixels.data[p + c] = color[c] * grain;
+      for (let c = 0; c < 3; c++) pixels.data[p + c] = (color[c] ?? 0) * grain;
       pixels.data[p + 3] = 255;
     }
   }
