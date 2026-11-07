@@ -119,7 +119,8 @@ type Leaf = { front: ReactNode; back: ReactNode };
 function buildLeaves(onView: (a: Artwork) => void): Leaf[] {
   const artLeaves: Leaf[] = [];
   for (let i = 0; i < ARTWORKS.length; i += 2) {
-    const front = ARTWORKS[i]!;
+    const front = ARTWORKS[i];
+    if (!front) continue;
     const back = ARTWORKS[i + 1];
     artLeaves.push({
       front: <ArtPage art={front} side="front" pageNo={i + 3} onView={onView} />,
@@ -179,13 +180,13 @@ export function ArtBook() {
               >
                 <div
                   onClick={() => go(1)}
-                  className="leaf-face absolute inset-0 cursor-pointer overflow-hidden rounded-r-md shadow-[var(--shadow-book)]"
+                  className={`leaf-face absolute inset-0 cursor-pointer overflow-hidden rounded-r-md ${i === current ? "shadow-[var(--shadow-paper)]" : ""}`}
                 >
                   {leaf.front}
                 </div>
                 <div
                   onClick={() => go(-1)}
-                  className="leaf-face leaf-back absolute inset-0 cursor-pointer overflow-hidden rounded-l-md shadow-[var(--shadow-book)]"
+                  className={`leaf-face leaf-back absolute inset-0 cursor-pointer overflow-hidden rounded-l-md ${i === current - 1 ? "shadow-[var(--shadow-paper)]" : ""}`}
                 >
                   {leaf.back}
                 </div>
