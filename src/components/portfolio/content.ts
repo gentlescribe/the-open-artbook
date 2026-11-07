@@ -38,8 +38,8 @@ export const ARTWORKS: Artwork[] = [
   { plate: "XI", title: "Ezryn — Concept Art 2", medium: "Concept art", src: ezryn2.url },
   { plate: "XII", title: "Hasgur — Concept Art", medium: "Concept art", src: hasgur.url },
   { plate: "XIII", title: "Tenteyecle", medium: "Digital painting", src: tenteyecle.url },
-  { plate: "XIV", title: "Sapphire", medium: "Digital painting", src: sapphire.url },
-  { plate: "XV", title: "Abhorrent", medium: "Digital painting", src: abhorrent.url },
+  { plate: "XIV", title: "Sapphire", medium: "Digital painting", src: abhorrent.url },
+  { plate: "XV", title: "Abhorrent", medium: "Digital painting", src: sapphire.url },
 ];
 
 export type WritingTab = "notes" | "essays" | "lore";

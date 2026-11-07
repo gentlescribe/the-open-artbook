@@ -59,13 +59,8 @@ function Cover() {
       <div className="absolute inset-[6%] rounded-sm border border-gold/50" />
       <div className="absolute inset-[8%] rounded-sm border border-gold/20" />
       <span className="text-lg text-gold">✦</span>
-      <p className="mt-4 font-serif text-[0.6rem] uppercase tracking-[0.45em] text-gold/80">
+      <h3 className="mt-4 font-display text-[clamp(1.4rem,2.6vw,2.25rem)] italic leading-tight text-gold">
         Sketchbook
-      </p>
-      <h3 className="mt-3 font-display text-[clamp(1.4rem,2.6vw,2.25rem)] italic leading-tight text-gold">
-        Celestial
-        <br />
-        Studies
       </h3>
       <p className="mt-4 font-serif text-xs tracking-[0.3em] text-gold/70">VOL. I</p>
       <span className="absolute inset-y-0 left-0 w-[6%] bg-linear-to-r from-cover-deep to-transparent" />
