@@ -1,11 +1,22 @@
 import { ChevronDown } from "lucide-react";
+import bioVideo from "@/assets/videos/bio-background.mp4.asset.json";
 
 export function BioSection({ onNext }: { onNext: () => void }) {
   return (
     <section
       id="bio"
-      className="relative flex min-h-dvh flex-col items-center justify-center px-6 pb-24 pt-8 text-center md:py-16"
+      className="relative flex min-h-dvh flex-col items-center justify-center overflow-hidden px-6 pb-24 pt-8 text-center md:py-16"
     >
+      <video
+        src={bioVideo.url}
+        autoPlay
+        muted
+        loop
+        playsInline
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 h-full w-full object-cover opacity-40"
+      />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-background/40" aria-hidden />
       <p className="animate-rise font-serif text-xs uppercase tracking-[0.5em] text-muted-foreground md:text-sm">
         Portfolio · Volume I
       </p>
