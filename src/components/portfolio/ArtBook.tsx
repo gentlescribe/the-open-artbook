@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { ARTWORKS, CONTACT_EMAIL, type Artwork } from "./content";
+import { ARTWORKS, ARTWORKS_VOL2, CONTACT_EMAIL, type Artwork } from "./content";
 
 const FLIP_MS = 1000;
 
@@ -53,7 +53,7 @@ function ArtPage({ art, side, pageNo, onView }: { art: Artwork; side: "front" | 
   );
 }
 
-function Cover() {
+function Cover({ volume }: { volume: string }) {
   return (
     <div className="velvet-cover relative flex h-full w-full flex-col items-center justify-center rounded-r-md p-[10%] text-center">
       <div className="absolute inset-[6%] rounded-sm border border-gold/50" />
@@ -62,7 +62,7 @@ function Cover() {
       <h3 className="mt-4 font-display text-[clamp(1.4rem,2.6vw,2.25rem)] italic leading-tight text-gold">
         Sketchbook
       </h3>
-      <p className="mt-4 font-serif text-xs tracking-[0.3em] text-gold/70">VOL. I</p>
+      <p className="mt-4 font-serif text-xs tracking-[0.3em] text-gold/70">{volume}</p>
       <span className="absolute inset-y-0 left-0 w-[6%] bg-linear-to-r from-cover-deep to-transparent" />
     </div>
   );
@@ -80,7 +80,7 @@ function BackCover() {
   );
 }
 
-function ExLibris() {
+function ExLibris({ artworks }: { artworks: Artwork[] }) {
   return (
     <div className="parchment spine-shade-right relative flex h-full w-full flex-col items-center px-[12%] pb-[8%] pt-[10%] text-center">
       <p className="font-serif text-[0.6rem] uppercase tracking-[0.45em] text-ink-faded">Ex Libris</p>
@@ -90,7 +90,7 @@ function ExLibris() {
         className="hide-scrollbar min-h-0 flex-1 space-y-1 overflow-y-auto overscroll-contain font-serif text-[clamp(0.65rem,0.95vw,0.85rem)] text-ink"
         onClick={(e) => e.stopPropagation()}
       >
-        {ARTWORKS.map((a) => (
+        {artworks.map((a) => (
           <li key={a.plate} className="flex gap-3">
             <span className="text-ink-faded">{a.plate}.</span>
             <span className="italic">{a.title}</span>
@@ -119,24 +119,24 @@ function Colophon() {
 
 type Leaf = { front: ReactNode; back: ReactNode };
 
-function buildLeaves(onView: (a: Artwork) => void): Leaf[] {
+function buildLeaves(artworks: Artwork[], volume: string, onView: (a: Artwork) => void): Leaf[] {
   const artLeaves: Leaf[] = [];
-  for (let i = 0; i < ARTWORKS.length; i += 2) {
-    const front = ARTWORKS[i];
+  for (let i = 0; i < artworks.length; i += 2) {
+    const front = artworks[i];
     if (!front) continue;
-    const back = ARTWORKS[i + 1];
+    const back = artworks[i + 1];
     artLeaves.push({
       front: <ArtPage art={front} side="front" pageNo={i + 3} onView={onView} />,
       back: back ? <ArtPage art={back} side="back" pageNo={i + 4} onView={onView} /> : <div className="parchment spine-shade-right h-full w-full" />,
     });
   }
-  return [{ front: <Cover />, back: <ExLibris /> }, ...artLeaves, { front: <Colophon />, back: <BackCover /> }];
+  return [{ front: <Cover volume={volume} />, back: <ExLibris artworks={artworks} /> }, ...artLeaves, { front: <Colophon />, back: <BackCover /> }];
 }
 
 
-export function ArtBook() {
+export function ArtBook({ artworks, volume }: { artworks: Artwork[]; volume: string }) {
   const [viewing, setViewing] = useState<Artwork | null>(null);
-  const LEAVES = useMemo(() => buildLeaves(setViewing), []);
+  const LEAVES = useMemo(() => buildLeaves(artworks, volume, setViewing), [artworks, volume]);
   const [current, setCurrent] = useState(0); // number of flipped leaves
   const [flipping, setFlipping] = useState<number | null>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
