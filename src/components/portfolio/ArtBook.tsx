@@ -239,21 +239,53 @@ export function ArtBook({ artworks, volume }: { artworks: Artwork[]; volume: str
   );
 }
 
-function ShelvedBook({ artworks, volume, label }: { artworks: Artwork[]; volume: string; label: string }) {
+function ClosedBook({ volume, onOpen }: { volume: string; onOpen: () => void }) {
   return (
-    <div className="flex min-w-0 flex-col items-center">
-      <ArtBook artworks={artworks} volume={volume} />
-      <div className="shelf-plank mt-1 w-full max-w-[42rem]" aria-hidden />
-      <p className="mt-3 font-serif text-xs uppercase tracking-[0.4em] text-muted-foreground">{label}</p>
-    </div>
+    <button
+      type="button"
+      onClick={onOpen}
+      aria-label={`Open Sketchbook ${volume}`}
+      className="shelf-book cursor-pointer"
+    >
+      <div className="shelf-book-inner velvet-cover relative flex h-44 w-32 flex-col items-center justify-center rounded-md border border-gold/30 p-3 text-center shadow-[var(--shadow-book)] sm:h-56 sm:w-40">
+        <div className="absolute inset-[7%] rounded-sm border border-gold/40" />
+        <span className="text-sm text-gold">✦</span>
+        <span className="mt-2 font-display text-lg italic leading-tight text-gold sm:text-xl">Sketchbook</span>
+        <span className="mt-2 font-serif text-[0.55rem] tracking-[0.3em] text-gold/70">{volume}</span>
+        <span className="absolute inset-y-0 left-0 w-[8%] rounded-l-md bg-linear-to-r from-cover-deep to-transparent" />
+      </div>
+    </button>
   );
 }
 
+const VOLUMES = [
+  { artworks: ARTWORKS, volume: "VOL. I", label: "Volume I" },
+  { artworks: ARTWORKS_VOL2, volume: "VOL. II", label: "Volume II" },
+];
+
 export function ArtBookShelf() {
+  const [open, setOpen] = useState<(typeof VOLUMES)[number] | null>(null);
   return (
-    <div className="artbook-shelf flex w-full flex-col items-center justify-center gap-14 xl:flex-row xl:items-end xl:gap-10">
-      <ShelvedBook artworks={ARTWORKS} volume="VOL. I" label="Volume I" />
-      <ShelvedBook artworks={ARTWORKS_VOL2} volume="VOL. II" label="Volume II" />
-    </div>
+    <>
+      <div className="shelf-scene flex items-start justify-center gap-10 sm:gap-16">
+        {VOLUMES.map((v) => (
+          <div key={v.volume} className="flex flex-col items-center">
+            <ClosedBook volume={v.volume} onOpen={() => setOpen(v)} />
+            <div className="shelf-plank mt-1 w-40 sm:w-52" aria-hidden />
+            <p className="mt-3 font-serif text-xs uppercase tracking-[0.4em] text-muted-foreground">{v.label}</p>
+          </div>
+        ))}
+      </div>
+      <p className="mt-6 text-center font-serif text-xs italic text-muted-foreground">
+        Pick a volume off the shelf to open it
+      </p>
+
+      <Dialog open={!!open} onOpenChange={(o) => !o && setOpen(null)}>
+        <DialogContent className="max-h-[98dvh] w-[98vw] max-w-7xl overflow-y-auto border-gold/30 bg-background/95 p-4 sm:p-8">
+          <DialogTitle className="sr-only">{open ? `Sketchbook ${open.volume}` : "Sketchbook"}</DialogTitle>
+          {open && <ArtBook artworks={open.artworks} volume={open.volume} />}
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }
