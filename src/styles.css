@@ -183,6 +183,16 @@
   perspective: 2400px;
 }
 
+/* Two volumes side by side on the shelf: shrink each book so both fit one row on wide screens */
+.artbook-shelf {
+  --page-h: min(58dvh, 72vw);
+}
+@media (min-width: 1280px) {
+  .artbook-shelf {
+    --page-h: min(64dvh, 24vw, 30rem);
+  }
+}
+
 @utility book-leaf {
   transform-style: preserve-3d;
   transform-origin: left center;

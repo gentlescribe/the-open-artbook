@@ -238,3 +238,22 @@ export function ArtBook({ artworks, volume }: { artworks: Artwork[]; volume: str
     </div>
   );
 }
+
+function ShelvedBook({ artworks, volume, label }: { artworks: Artwork[]; volume: string; label: string }) {
+  return (
+    <div className="flex min-w-0 flex-col items-center">
+      <ArtBook artworks={artworks} volume={volume} />
+      <div className="shelf-plank mt-1 w-full max-w-[42rem]" aria-hidden />
+      <p className="mt-3 font-serif text-xs uppercase tracking-[0.4em] text-muted-foreground">{label}</p>
+    </div>
+  );
+}
+
+export function ArtBookShelf() {
+  return (
+    <div className="artbook-shelf flex w-full flex-col items-center justify-center gap-14 xl:flex-row xl:items-end xl:gap-10">
+      <ShelvedBook artworks={ARTWORKS} volume="VOL. I" label="Volume I" />
+      <ShelvedBook artworks={ARTWORKS_VOL2} volume="VOL. II" label="Volume II" />
+    </div>
+  );
+}
