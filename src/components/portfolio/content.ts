@@ -14,6 +14,14 @@ import hasgur from "@/assets/hasgur-concept.png.asset.json";
 import tenteyecle from "@/assets/tenteyecle.png.asset.json";
 import sapphire from "@/assets/sapphire.png.asset.json";
 import abhorrent from "@/assets/abhorrent.png.asset.json";
+import characterStudyCoat from "@/assets/character-study-coat.png.asset.json";
+import portraitInBlack from "@/assets/portrait-in-black.png.asset.json";
+import blueLaugh from "@/assets/blue-laugh.png.asset.json";
+import hollowOne from "@/assets/hollow-one.png.asset.json";
+import maskedTraveler from "@/assets/masked-traveler.png.asset.json";
+import violetPortrait from "@/assets/violet-portrait.png.asset.json";
+import greenEyedElf from "@/assets/green-eyed-elf.png.asset.json";
+import manyEyedBeast from "@/assets/many-eyed-beast.png.asset.json";
 
 export const CONTACT_EMAIL = "starrspawn08@gmail.com";
 
@@ -41,6 +49,18 @@ export const ARTWORKS: Artwork[] = [
   { plate: "XIII", title: "Tenteyecle", medium: "Digital painting", src: assetUrl(tenteyecle) },
   { plate: "XIV", title: "Sapphire", medium: "Digital painting", src: assetUrl(abhorrent) },
   { plate: "XV", title: "Abhorrent", medium: "Digital painting", src: assetUrl(sapphire) },
+];
+
+// Second volume of the art book, shelved next to the first.
+export const ARTWORKS_VOL2: Artwork[] = [
+  { plate: "I", title: "Character Study — Coat & Curls", medium: "Digital sketch", src: assetUrl(characterStudyCoat) },
+  { plate: "II", title: "Portrait in Black", medium: "Digital painting", src: assetUrl(portraitInBlack) },
+  { plate: "III", title: "Blue Laugh", medium: "Digital painting", src: assetUrl(blueLaugh) },
+  { plate: "IV", title: "The Hollow One", medium: "Digital painting", src: assetUrl(hollowOne) },
+  { plate: "V", title: "The Masked Traveler", medium: "Digital painting", src: assetUrl(maskedTraveler) },
+  { plate: "VI", title: "Violet", medium: "Digital painting", src: assetUrl(violetPortrait) },
+  { plate: "VII", title: "Green-Eyed Elf", medium: "Digital painting", src: assetUrl(greenEyedElf) },
+  { plate: "VIII", title: "Many-Eyed Beast", medium: "Pencil sketch", src: assetUrl(manyEyedBeast) },
 ];
 
 export type WritingTab = "notes" | "essays" | "lore";
