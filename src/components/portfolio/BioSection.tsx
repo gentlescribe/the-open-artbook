@@ -53,7 +53,16 @@ export function BioSection({ onNext }: { onNext: () => void }) {
         Muyideen Adekunle Alatise, aka Starrspawn, is a multidisciplinary artist — a writer, poet
         and digital artist/painter. He is a 2025 Silver Award and 2026 Gold Award recipient of the
         Royal Commonwealth Essay Competition (senior category), and his works have been featured
-        in Kiitan Creative Magazine.
+        in{" "}
+        <a
+          href="https://kiitanzine.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gold underline decoration-gold/40 underline-offset-4 transition-colors hover:text-gold/80"
+        >
+          Kiitan Creative Magazine
+        </a>
+        .
       </p>
 
       <button
