@@ -53,14 +53,14 @@ export const ARTWORKS: Artwork[] = [
 
 // Second volume of the art book, shelved next to the first.
 export const ARTWORKS_VOL2: Artwork[] = [
-  { plate: "I", title: "Character Study — Coat & Curls", medium: "Digital sketch", src: assetUrl(characterStudyCoat) },
-  { plate: "II", title: "Portrait in Black", medium: "Digital painting", src: assetUrl(portraitInBlack) },
-  { plate: "III", title: "Blue Laugh", medium: "Digital painting", src: assetUrl(blueLaugh) },
-  { plate: "IV", title: "The Hollow One", medium: "Digital painting", src: assetUrl(hollowOne) },
-  { plate: "V", title: "The Masked Traveler", medium: "Digital painting", src: assetUrl(maskedTraveler) },
-  { plate: "VI", title: "Violet", medium: "Digital painting", src: assetUrl(violetPortrait) },
-  { plate: "VII", title: "Green-Eyed Elf", medium: "Digital painting", src: assetUrl(greenEyedElf) },
-  { plate: "VIII", title: "Many-Eyed Beast", medium: "Pencil sketch", src: assetUrl(manyEyedBeast) },
+  { plate: "I", title: "Sketch #1", medium: "Digital sketch", src: assetUrl(characterStudyCoat) },
+  { plate: "II", title: "Sketch #2", medium: "Digital painting", src: assetUrl(portraitInBlack) },
+  { plate: "III", title: "Sketch #3", medium: "Digital painting", src: assetUrl(blueLaugh) },
+  { plate: "IV", title: "Sketch #4", medium: "Digital painting", src: assetUrl(hollowOne) },
+  { plate: "V", title: "Sketch #5", medium: "Digital painting", src: assetUrl(maskedTraveler) },
+  { plate: "VI", title: "Sketch #6", medium: "Digital painting", src: assetUrl(violetPortrait) },
+  { plate: "VII", title: "Sketch #7", medium: "Digital painting", src: assetUrl(greenEyedElf) },
+  { plate: "VIII", title: "Sketch #8", medium: "Pencil sketch", src: assetUrl(manyEyedBeast) },
 ];
 
 export type WritingTab = "notes" | "essays" | "lore";
