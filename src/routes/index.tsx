@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { Starfield } from "@/components/portfolio/Starfield";
 import { BioSection } from "@/components/portfolio/BioSection";
-import { ArtBook } from "@/components/portfolio/ArtBook";
+import { ArtBookShelf } from "@/components/portfolio/ArtBook";
 import { Bookshelf } from "@/components/portfolio/Bookshelf";
 import { ContactLinks, LetterForm } from "@/components/portfolio/ContactSection";
 import { StarrstreamSection } from "@/components/portfolio/StarrstreamSection";
@@ -48,7 +48,7 @@ function Index() {
       <main className="hide-scrollbar relative z-10 h-dvh overflow-y-scroll overscroll-none">
         <BioSection onNext={() => scrollTo("artbook")} />
         <Section id="artbook" num="II" title="The Artbook">
-          <ArtBook />
+          <ArtBookShelf />
         </Section>
         <Section id="shelf" num="III" title="The Bookshelf">
           <Bookshelf />
